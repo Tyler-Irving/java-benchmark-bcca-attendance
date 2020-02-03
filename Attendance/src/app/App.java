@@ -26,11 +26,12 @@ public class App {
             } else {
                 Attendance studentInfo = new Attendance(name, date);
                 attendanceInfo.add(studentInfo);
+                saveInfo(attendanceInfo);
+                System.out.println("You're signed in.");
                 break;
             }
         }
 
-        saveInfo(attendanceInfo);
     }
 
     public static String getInfo() {
@@ -53,7 +54,7 @@ public class App {
             System.out.println(" - Do NOT ignore the space.");
             System.out.print(">>> ");
             String choice = in.nextLine();
-            if (choice.equalsIgnoreCase("q")) {
+            if (choice.equalsIgnoreCase("quit")) {
                 return null;
             } else if (choice.equalsIgnoreCase("angie u") || choice.equalsIgnoreCase("christian g")
                     || choice.equalsIgnoreCase("dakota n") || choice.equalsIgnoreCase("derek s")
@@ -82,7 +83,6 @@ public class App {
             ObjectOutputStream os = new ObjectOutputStream(fileStream);
             os.writeObject(attendanceInfo);
             os.close();
-            System.out.println("You're signed in.");
         } catch (IOException ex) {
             System.out.println("Failed to save attendance.");
         }
